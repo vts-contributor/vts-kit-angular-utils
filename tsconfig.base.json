@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@vts-kit/angular-network": ["libs/network/src/index.ts"],
+      "@vts-kit/angular-validator": ["libs/validator/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
