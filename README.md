@@ -4,4 +4,4 @@ VTS Kit Angular Utilities is a collection of libraries which can be integrated i
 
 ## Integratable Libaries
 
-[Network]("/libs/network/README.md")
+[Network](/libs/network)

@@ -75,6 +75,7 @@ export class Service {
 }
 ```
 
+---
 ### NetworkUtils
 
 Provide some useful function to interact with network state, data...
