@@ -4,7 +4,7 @@ export const online$ = () =>
   merge(
     fromEvent(window, 'offline').pipe(map(() => false)),
     fromEvent(window, 'online').pipe(map(() => true)),
-    new Observable((sub) => {
+    new Observable<boolean>((sub) => {
       sub.next(navigator.onLine);
       sub.complete();
     })

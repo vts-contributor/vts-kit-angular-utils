@@ -99,7 +99,12 @@ export class RestClient {
   }
 
   protected resolveUrl(pathOrUrl: string) {
-    if (pathOrUrl.startsWith('http://') || pathOrUrl.startsWith('https://'))
+    if (
+      pathOrUrl.startsWith('http://') ||
+      pathOrUrl.startsWith('https://') ||
+      pathOrUrl.startsWith('./') ||
+      pathOrUrl.startsWith('../')
+    )
       return pathOrUrl;
     const baseUrl = this._config.getBaseUrl() || '';
     const path = pathOrUrl.startsWith('/') ? pathOrUrl : `/${pathOrUrl}`;
@@ -115,7 +120,8 @@ export class RestClientObserveBody extends RestClient {
   }
 
   public get(pathOrUrl: string): Observable<Object>;
-  public get<T>(pathOrUrl: string): Observable<T> {
+  public get<T>(pathOrUrl: string): Observable<T>;
+  public get<T>(pathOrUrl: string) {
     return super.enhance.bind(this._client)(
       this.http.get<T>(this.resolveUrl(pathOrUrl), {
         ...this._config.getHttpOptions(),
@@ -156,7 +162,8 @@ export class RestClientObserveBody extends RestClient {
   }
 
   public delete(pathOrUrl: string): Observable<Object>;
-  public delete<T>(pathOrUrl: string): Observable<T> {
+  public delete<T>(pathOrUrl: string): Observable<T>;
+  public delete<T>(pathOrUrl: string) {
     return super.enhance.bind(this._client)(
       this.http.delete<T>(this.resolveUrl(pathOrUrl), {
         ...this._config.getHttpOptions(),
@@ -197,7 +204,8 @@ export class RestClientObserveBody extends RestClient {
   }
 
   public options(pathOrUrl: string): Observable<Object>;
-  public options<T>(pathOrUrl: string): Observable<T> {
+  public options<T>(pathOrUrl: string): Observable<T>;
+  public options<T>(pathOrUrl: string) {
     return super.enhance.bind(this._client)(
       this.http.options<T>(this.resolveUrl(pathOrUrl), {
         ...this._config.getHttpOptions(),
@@ -238,7 +246,8 @@ export class RestClientObserveBody extends RestClient {
   }
 
   public put(pathOrUrl: string, body: any | null): Observable<Object>;
-  public put<T>(pathOrUrl: string, body: any | null): Observable<T> {
+  public put<T>(pathOrUrl: string, body: any | null): Observable<T>;
+  public put<T>(pathOrUrl: string, body: any | null) {
     return super.enhance.bind(this._client)(
       this.http.put<T>(this.resolveUrl(pathOrUrl), body, {
         ...this._config.getHttpOptions(),
@@ -279,7 +288,8 @@ export class RestClientObserveBody extends RestClient {
   }
 
   public post(pathOrUrl: string, body: any | null): Observable<Object>;
-  public post<T>(pathOrUrl: string, body: any | null): Observable<T> {
+  public post<T>(pathOrUrl: string, body: any | null): Observable<T>;
+  public post<T>(pathOrUrl: string, body: any | null) {
     return super.enhance.bind(this._client)(
       this.http.post<T>(this.resolveUrl(pathOrUrl), body, {
         ...this._config.getHttpOptions(),
@@ -320,7 +330,8 @@ export class RestClientObserveBody extends RestClient {
   }
 
   public patch(pathOrUrl: string, body: any | null): Observable<Object>;
-  public patch<T>(pathOrUrl: string, body: any | null): Observable<T> {
+  public patch<T>(pathOrUrl: string, body: any | null): Observable<T>;
+  public patch<T>(pathOrUrl: string, body: any | null) {
     return super.enhance.bind(this._client)(
       this.http.patch<T>(this.resolveUrl(pathOrUrl), body, {
         ...this._config.getHttpOptions(),
@@ -369,7 +380,8 @@ export class RestClientObserveResponse extends RestClient {
   }
 
   public get(pathOrUrl: string): Observable<HttpResponse<Object>>;
-  public get<T>(pathOrUrl: string): Observable<HttpResponse<T>> {
+  public get<T>(pathOrUrl: string): Observable<HttpResponse<T>>;
+  public get<T>(pathOrUrl: string) {
     return this.enhance.bind(this._client)(
       this.http.get<T>(this.resolveUrl(pathOrUrl), {
         ...this._config.getHttpOptions(),
@@ -410,7 +422,8 @@ export class RestClientObserveResponse extends RestClient {
   }
 
   public delete(pathOrUrl: string): Observable<HttpResponse<Object>>;
-  public delete<T>(pathOrUrl: string): Observable<HttpResponse<T>> {
+  public delete<T>(pathOrUrl: string): Observable<HttpResponse<T>>;
+  public delete<T>(pathOrUrl: string) {
     return this.enhance.bind(this._client)(
       this.http.delete<T>(this.resolveUrl(pathOrUrl), {
         ...this._config.getHttpOptions(),
@@ -451,7 +464,8 @@ export class RestClientObserveResponse extends RestClient {
   }
 
   public options(pathOrUrl: string): Observable<HttpResponse<Object>>;
-  public options<T>(pathOrUrl: string): Observable<HttpResponse<T>> {
+  public options<T>(pathOrUrl: string): Observable<HttpResponse<T>>;
+  public options<T>(pathOrUrl: string) {
     return this.enhance.bind(this._client)(
       this.http.options<T>(this.resolveUrl(pathOrUrl), {
         ...this._config.getHttpOptions(),
@@ -498,7 +512,8 @@ export class RestClientObserveResponse extends RestClient {
   public put<T>(
     pathOrUrl: string,
     body: any | null
-  ): Observable<HttpResponse<T>> {
+  ): Observable<HttpResponse<T>>;
+  public put<T>(pathOrUrl: string, body: any | null) {
     return this.enhance.bind(this._client)(
       this.http.put<T>(this.resolveUrl(pathOrUrl), body, {
         ...this._config.getHttpOptions(),
@@ -545,7 +560,8 @@ export class RestClientObserveResponse extends RestClient {
   public post<T>(
     pathOrUrl: string,
     body: any | null
-  ): Observable<HttpResponse<T>> {
+  ): Observable<HttpResponse<T>>;
+  public post<T>(pathOrUrl: string, body: any | null) {
     return this.enhance.bind(this._client)(
       this.http.post<T>(this.resolveUrl(pathOrUrl), body, {
         ...this._config.getHttpOptions(),
@@ -592,7 +608,8 @@ export class RestClientObserveResponse extends RestClient {
   public patch<T>(
     pathOrUrl: string,
     body: any | null
-  ): Observable<HttpResponse<T>> {
+  ): Observable<HttpResponse<T>>;
+  public patch<T>(pathOrUrl: string, body: any | null) {
     return this.enhance.bind(this._client)(
       this.http.patch<T>(this.resolveUrl(pathOrUrl), body, {
         ...this._config.getHttpOptions(),
@@ -641,7 +658,8 @@ export class RestClientObserveEvents extends RestClient {
   }
 
   public get(pathOrUrl: string): Observable<HttpEvent<Object>>;
-  public get<T>(pathOrUrl: string): Observable<HttpEvent<T>> {
+  public get<T>(pathOrUrl: string): Observable<HttpEvent<T>>;
+  public get<T>(pathOrUrl: string) {
     return this.enhance.bind(this._client)(
       this.http.get<T>(this.resolveUrl(pathOrUrl), {
         ...this._config.getHttpOptions(),
@@ -682,7 +700,8 @@ export class RestClientObserveEvents extends RestClient {
   }
 
   public delete(pathOrUrl: string): Observable<HttpEvent<Object>>;
-  public delete<T>(pathOrUrl: string): Observable<HttpEvent<T>> {
+  public delete<T>(pathOrUrl: string): Observable<HttpEvent<T>>;
+  public delete<T>(pathOrUrl: string) {
     return this.enhance.bind(this._client)(
       this.http.delete<T>(this.resolveUrl(pathOrUrl), {
         ...this._config.getHttpOptions(),
@@ -723,7 +742,8 @@ export class RestClientObserveEvents extends RestClient {
   }
 
   public options(pathOrUrl: string): Observable<HttpEvent<Object>>;
-  public options<T>(pathOrUrl: string): Observable<HttpEvent<T>> {
+  public options<T>(pathOrUrl: string): Observable<HttpEvent<T>>;
+  public options<T>(pathOrUrl: string) {
     return this.enhance.bind(this._client)(
       this.http.options<T>(this.resolveUrl(pathOrUrl), {
         ...this._config.getHttpOptions(),
@@ -767,7 +787,8 @@ export class RestClientObserveEvents extends RestClient {
     pathOrUrl: string,
     body: any | null
   ): Observable<HttpEvent<Object>>;
-  public put<T>(pathOrUrl: string, body: any | null): Observable<HttpEvent<T>> {
+  public put<T>(pathOrUrl: string, body: any | null): Observable<HttpEvent<T>>;
+  public put<T>(pathOrUrl: string, body: any | null) {
     return this.enhance.bind(this._client)(
       this.http.put<T>(this.resolveUrl(pathOrUrl), body, {
         ...this._config.getHttpOptions(),
@@ -811,10 +832,8 @@ export class RestClientObserveEvents extends RestClient {
     pathOrUrl: string,
     body: any | null
   ): Observable<HttpEvent<Object>>;
-  public post<T>(
-    pathOrUrl: string,
-    body: any | null
-  ): Observable<HttpEvent<T>> {
+  public post<T>(pathOrUrl: string, body: any | null): Observable<HttpEvent<T>>;
+  public post<T>(pathOrUrl: string, body: any | null) {
     return this.enhance.bind(this._client)(
       this.http.post<T>(this.resolveUrl(pathOrUrl), body, {
         ...this._config.getHttpOptions(),
@@ -861,7 +880,8 @@ export class RestClientObserveEvents extends RestClient {
   public patch<T>(
     pathOrUrl: string,
     body: any | null
-  ): Observable<HttpEvent<T>> {
+  ): Observable<HttpEvent<T>>;
+  public patch<T>(pathOrUrl: string, body: any | null) {
     return this.enhance.bind(this._client)(
       this.http.patch<T>(this.resolveUrl(pathOrUrl), body, {
         ...this._config.getHttpOptions(),
