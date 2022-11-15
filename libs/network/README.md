@@ -1,4 +1,4 @@
-# VTS Kit Angular Utilities
+# VTS Kit Angular Utilities (Network)
 
 ## Installation
 
@@ -76,6 +76,7 @@ export class Service {
 ```
 
 ---
+
 ### NetworkUtils
 
 Provide some useful function to interact with network state, data...
