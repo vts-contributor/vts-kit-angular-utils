@@ -6,7 +6,13 @@
 npm install @vts-kit/angular-validator
 ```
 
-- For template-driven form:
+## Guideline
+
+- #### Template-driven Form
+
+Check list of validators below and use corresponding directives and options.
+
+**Import:**
 
 ```
 import { VtsValidatorModule } from '@vts-kit/angular-validator';
@@ -16,29 +22,7 @@ import { VtsValidatorModule } from '@vts-kit/angular-validator';
 })
 ```
 
-Check list of validators below and use corresponding directives and options.
-
-- For reactive form:
-
-```
-import { VTSValidators } from '@vts-kit/angular-validator';
-
-export class Component ... {
-    // Use with 'validators' property of FormControl, FormGroup, FormBuilder, ...
-    control = new FormBuilder().control('', {
-        validators: [VTSValidators.url]
-    })
-}
-```
-
-Check list of validators below and use corresponding functions and options.
-
-## Guideline
-
-Quick guide:
-
-- Template-driven Form
-
+**Usage:**
 ```
 //// Without other options (Some validators don't have extra options)
 // *.html
@@ -52,7 +36,24 @@ Quick guide:
 {{ control.errors | json }}
 ```
 
-- Reactive Form
+- #### Reactive Form
+
+Check list of validators below and use corresponding functions and options.
+
+**Import:**
+
+```
+import { VTSValidators } from '@vts-kit/angular-validator';
+
+export class Component ... {
+    // Use with 'validators' property of FormControl, FormGroup, FormBuilder, ...
+    control = new FormBuilder().control('', {
+        validators: [VTSValidators.url]
+    })
+}
+```
+
+**Usage:**
 
 ```
 //// Without other options (Some validators don't have extra options)
@@ -82,7 +83,7 @@ control = new FormBuilder().control('', {
 {{ control.errors | json }}
 ```
 
-List of validators
+**List of validators**
 
 - [Viettel Mail](#viettel-mail)
 - [IP Address](#ip-address)
@@ -131,8 +132,8 @@ Validate if input is a valid number, number type (float, integer), larger, small
 | 2   | `numberType`     | `float` or `integer` or `any` (default | Check type of number                                          | `numberType`          |
 | 3   | `larger`         | `number`                               | Check value of input is larger than given number              | `numberLarger`        |
 | 4   | `largerOrEqual`  | `number`                               | Check value of input is larger than or equal to given number  | `numberLargerOrEqual` |
-| 5   | `smaller`        | `number`                               | Check value of input is smaller than given number             | `smaller`             |
-| 6   | `smallerOrEqual` | `number`                               | Check value of input is smaller than or equal to given number | `smallerOrEqual`      |
+| 5   | `smaller`        | `number`                               | Check value of input is smaller than given number             | `numberSmaller`             |
+| 6   | `smallerOrEqual` | `number`                               | Check value of input is smaller than or equal to given number | `numberSmallerOrEqual`      |
 
 ### URL
 
