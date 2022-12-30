@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@vts-kit/angular-common": ["libs/common/src/index.ts"],
       "@vts-kit/angular-network": ["libs/network/src/index.ts"],
       "@vts-kit/angular-validator": ["libs/validator/src/index.ts"]
     }
