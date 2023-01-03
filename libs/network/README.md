@@ -8,36 +8,80 @@ npm install @vts-kit/angular-network
 
 ## Guideline
 
-### Date
+### RestClient
 
-| No  | Function Name    | Description                                                | Output  |
-| --- | ---------------- | ---------------------------------------------------------- | ------- |
-| 1   | distance         | Return a distance between two dates in miliseconds         | number  |
-| 2   | isGreater        | Return whether `date1` is greater than `date2`             | boolean |
-| 3   | isGreaterOrEqual | Return whether `date1` is greater than or equal to `date2` | boolean |
-| 4   | isSmaller        | Return whether `date1` is smaller than `date2`             | boolean |
-| 5   | isSmallerOrEqual | Return whether `date1` is smaller than or equal to `date2` | boolean |
+RestClient provide abilities to interact with RESTful API through builder pattern.
 
-### String
+**Import**
 
-| No  | Function Name | Description                                                                                         | Output  |
-| --- | ------------- | --------------------------------------------------------------------------------------------------- | ------- |
-| 1   | isNullOrEmpty | Return whether a string is null or empty                                                            | boolean |
-| 2   | defaultValue  | Return `defaultValue` if `value` is null or empty, else return `value`                              | string  |
-| 3   | upperFirst    | Return `value` with first character is setted to be uppercase                                       | string  |
-| 4   | lowerFirst    | Return `value` with first character is setted to be lowercase                                       | string  |
-| 5   | camelCase     | Converts `value` to camel case                                                                      | string  |
-| 6   | pascalCase    | Converts `value` to pascal case                                                                     | string  |
-| 7   | kebabCase     | Converts `value` to kebab case                                                                      | string  |
-| 8   | snakeCase     | Converts `value` to snake case                                                                      | string  |
-| 9   | capitalize    | Converts the first character of first word in `value` to upper case and the remaining to lower case | string  |
-| 10  | capitalizeAll | Converts the first character of each word in `value` to upper case and the remaining to lower case  | string  |
+```
+// app.module.ts
+import { VtsRestModule, RestClientOptions, VtsRestModuleConfig } from "@vts-kit/angular-network"
 
-### Path
+// Default config
+const NETWORK_MODULE_CONFIG: VtsRestModuleConfig = {
+  defaultConfig: new RestClientOptions()
+    .setBaseUrl('https://<base_api_url>')
+    .setHeader('<key>', '<value>')
+    .setParam('<key>', '<value>')
+    .setRetry(3),
+};
 
-| No  | Function Name | Description                     | Output |
-| --- | ------------- | ------------------------------- | ------ |
-| 1   | getExtName    | Return extension of the path    | string |
-| 2   | getDirName    | Return dir of the path          | string |
-| 3   | getBaseName   | Return last portion of the path | string |
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    ...,
+    VtsRestModule.forRoot(NETWORK_MODULE_CONFIG)
+    // Without default config
+    // VtsRestModule.forRoot()
+  ]
+})
+export class AppModule {}
+```
 
+**Usage**
+
+Pattern:
+
+```
+client
+  .setHeader("key", "value")
+  .setTimeout(60000)
+  ... // More builder
+  .obserseBody() // or obserseEvents() or obserseResponse()
+  .get("<path or url>") // or post, patch, put, options, delete
+  .subscribe(...)
+```
+
+Example:
+
+```
+// name.any.ts
+@Injectable({
+  providedIn: 'root',
+})
+export class Service {
+  constructor(private client: RestClient) {}
+
+  callApi() {
+    this.client
+      .obserseBody()
+      .get<Post[]>('/posts')
+      .subscribe({
+        next: (d) => console.log(d[0].title),
+        error: (e) => console.log(e),
+      });
+  }
+}
+```
+
+---
+
+### NetworkUtils
+
+Provide some useful function to interact with network state, data...
+
+| No  | Function Name | Description                          | Output              |
+| --- | ------------- | ------------------------------------ | ------------------- |
+| 1   | online$       | Return observable to network status  | Observable<boolean> |
+| 2   | isOnline      | Return current network active status | boolean             |
