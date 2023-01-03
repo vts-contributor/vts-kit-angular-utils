@@ -1,9 +1,9 @@
-# VTS Kit Angular Utilities (Network)
+# VTS Kit Angular Utilities (Common)
 
 ## Installation
 
 ```
-npm install @vts-kit/angular-network
+npm install @vts-kit/angular-common
 ```
 
 ## Guideline
