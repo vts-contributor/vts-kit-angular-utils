@@ -9,8 +9,8 @@
     "url": "git+https://github.com/vts-contributor/vts-kit-angular-utils"
   },
   "peerDependencies": {
-    "@angular/common": "^14.2.0",
-    "@angular/core": "^14.2.0"
+    "@angular/common": ">=12",
+    "@angular/core": ">=12"
   },
   "dependencies": {
     "tslib": "^2.3.0"
