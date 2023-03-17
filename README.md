@@ -7,3 +7,4 @@ VTS Kit Angular Utilities is a collection of libraries which can be integrated i
 - [Network](/libs/network)
 - [Validator](/libs/validator)
 - [Common](/libs/common)
+- [Integration & SDK](/libs/integration)

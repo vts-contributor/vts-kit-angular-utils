@@ -1,9 +1,9 @@
 {
-  "name": "@vts-kit/angular-common",
+  "name": "@vts-kit/angular-integration",
   "version": "1.0.0",
   "author": "Viettel Solutions",
   "license": "Viettel Solutions",
-  "description": "Collection of useful common utillities to be integrated with Angular project",
+  "description": "Collection of integration utillities and SDK.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vts-contributor/vts-kit-angular-utils"
