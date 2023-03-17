@@ -40,4 +40,3 @@ npm install @vts-kit/angular-common
 | 1   | getExtName    | Return extension of the path    | string |
 | 2   | getDirName    | Return dir of the path          | string |
 | 3   | getBaseName   | Return last portion of the path | string |
-

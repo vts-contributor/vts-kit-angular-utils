@@ -1,5 +1,7 @@
-export * from './options';
+export * from './module';
 
 export * from './facade';
 
-export * from './module';
+export * from './factory';
+
+export * from './options';
